@@ -7,8 +7,15 @@
 import pandas as pd
 import seaborn as sns
 
-df=pd.read_csv("diabetes.csv")
+df=pd.read_csv("/diabetes.csv")
 df
+print(df.head())
+print(df.describe())
+
+plt.figure(figsize=(12, 8))
+sns.heatmap(df.corr(), annot=True, cmap='coolwarm', fmt=".2f")
+plt.title("Correlation Matrix")
+plt.show()
 
 x=df.drop('Outcome',axis=1)
 
@@ -37,6 +44,9 @@ print("RecallScore:", recall_score(y_test, y_pred))
 print("F1 Score:", f1_score(y_test, y_pred))
 print("Precision Score:",precision_score(y_test, y_pred))
 
+classification_report = metrics.classification_report(y_test, y_pred)
+print("Classification report:")
+print(classification_report)
 
 # In[ ]:
 
